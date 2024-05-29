@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View note '{{ note.title }}'
+{% endblock %}
+
+{% block body %}
+<div class="container bootstrap snippets bootdey">
+    <div class="form-container"> 
+        <div class="note-form">
+            <div class="content">
+                <small class="datesmall">{{ note.created_on }}</small>
+                <h4>{{ note.title }}</h4>
+                <p>______________________</p>
+                <p>{{ note.content }}</p>
+                <p>______________________</p>
+                {% if note.author %}
+                <small class="authsmall"><i>Author: {{ note.author }}</i></small><br>
+                {% endif %}
+            </div>
+            <div class="button-container">
+                <a href="{% url 'edit_note' note.id %}"><button type="button">Edit This Note <i class="fa fa-pencil-square-o"></i></button></a>
+                <a href="{% url 'delete_note' note.id %}" class="text-danger"><button type="button">Delete This Note <i class="fa fa-trash-o "></i></button></a>
+                <a href="{% url 'view_all_notes' %}"><button type="button">Back to Pinboard</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

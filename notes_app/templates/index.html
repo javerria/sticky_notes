@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pinboard
+{% endblock %}
+
+{% block body %}
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+		<ul class="notes">  
+            <a href="{% url 'create_note' %}" class="add-button"><li>
+                <div class="new-note">
+                    <h1>New Note<br><i class="fa fa-plus"></i></h1>
+                </div>
+            </li></a>
+            
+            {% for note in notes %}
+            <li>
+                <div class="all-notes {{ note.rotation_class }}">
+                    <small class="datesmall">{{ note.created_on }}</small>
+                    <h4><a href="{% url 'view_note' note.id %}">{{ note.title }}</a></h4>
+                    <p>{{ note.content }}</p>
+                    {% if note.author %}
+                    <small class="authsmall">Author: {{ note.author }}</small>
+                    {% else %}
+                    <small class="authsmall">Anonymous Author</small>
+                    {% endif %}
+                    <a href="{% url 'delete_note' note.id %}" class="text-danger pull-right delete-button"><i class="fa fa-trash-o "></i></a> 
+                    <a href="{% url 'edit_note' note.id %}" class="text-danger pull-right edit-button"><i class="fa fa-pencil-square-o "></i></a>
+                
+                </div>
+            </li>   
+            {% endfor %}
+		</ul>  
+	</div>
+</div>
+  
+{% endblock %}
