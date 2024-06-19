@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Register {% endblock %}
+
+{% block body %}
+<div class="container bootstrap snippets bootdey">
+    <div class="form-container">  
+        <div class="note-form">
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+                <h2>Register </h2>
+                {{ form.as_p }}
+                <label for="account_type">Account Type</label>
+                <select name="account_type" id="account_type">
+                    <option value="reader">Reader</option>
+                    <option value="poster">Poster</option>
+                </select><br>
+                <br><input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

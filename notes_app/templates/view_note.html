@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-View note '{{ note.title }}'
+'{{ note.title }}'
 {% endblock %}
 
 {% block body %}
@@ -19,8 +19,12 @@ View note '{{ note.title }}'
                 {% endif %}
             </div>
             <div class="button-container">
+                {% if perms.notes_app.change_stickynote %}
                 <a href="{% url 'edit_note' note.id %}"><button type="button">Edit This Note <i class="fa fa-pencil-square-o"></i></button></a>
+                {% endif %}
+                {% if perms.notes_app.delete_stickynote %}
                 <a href="{% url 'delete_note' note.id %}" class="text-danger"><button type="button">Delete This Note <i class="fa fa-trash-o "></i></button></a>
+                {% endif %}
                 <a href="{% url 'view_all_notes' %}"><button type="button">Back to Pinboard</button></a>
             </div>
         </div>

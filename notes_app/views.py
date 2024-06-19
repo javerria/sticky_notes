@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseNotFound
 from .models import StickyNote
 import random
 
 
 # View to list all sticky notes
+@login_required
 def view_all_notes(request):
     notes = StickyNote.objects.all()
     rotation_classes = ["rotate-1", "rotate-2"]
@@ -14,12 +16,14 @@ def view_all_notes(request):
 
 
 # View to display a single sticky note
+@login_required
 def view_note(request, note_id):
     note = get_object_or_404(StickyNote, id=note_id)
     return render(request, "view_note.html", {"note": note})
 
 
 # View to create a new sticky note
+@permission_required('notes_app.add_stickynote', login_url='index')
 def create_note(request):
     if request.method == "POST":
         author = request.POST.get("author")
@@ -31,6 +35,8 @@ def create_note(request):
 
 
 # View to edit an existing sticky note
+
+@permission_required('notes_app.change_stickynote', login_url='index')
 def edit_note(request, note_id):
     note = get_object_or_404(StickyNote, id=note_id)
     if request.method == "POST":
@@ -46,6 +52,8 @@ def edit_note(request, note_id):
 
 
 # View to delete an existing sticky note
+
+@permission_required('notes_app.delete_stickynote', login_url='index')
 def delete_note(request, note_id):
     note = get_object_or_404(StickyNote, id=note_id)
     note.delete()

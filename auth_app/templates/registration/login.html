@@ -1,0 +1,20 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Login {% endblock %}
+
+{% block body %}
+<div class="container bootstrap snippets bootdey">
+    <div class="form-container">  
+        <div class="note-form">
+            <form method="post" autocomplete="off">
+                {% csrf_token %}   
+                <h2>Login to your account</h2>
+                {{ form.as_p }}
+                <br><input type="submit" value="Submit">
+            </form>
+            <br><h2>New User?</h2>
+            <form action="{% url 'register' %}"><input type="submit" value="Register Your Account"></form>
+        </div>
+    </div>
+</div>
+{% endblock %}

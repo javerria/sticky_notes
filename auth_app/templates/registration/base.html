@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,26 +11,14 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    
-<header>
-    <a href="/">Welcome to Your Pinboard! <i class="fa fa-thumb-tack"></i></a>
-    <br>
-    {% if request.user.is_authenticated %}
-        <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %} 
-        <button type="submit">Logout</button>
-        </form>
-    {% endif %}
+    <header>
+        <a href="/">Welcome to Your Pinboard! <i class="fa fa-thumb-tack"></i></a>
     </header>
-
-    <div class="container mt-5">
-        {% block body %}
-        {% endblock %}
-    </div>
+    <br>
+    {% block body %}
+    {% endblock %}
     <footer>
         <p><a href="https://github.com/javerria/sticky_notes/">&copy; 2024 Sticky Notes Project. Javeria Iqtidar.</a></p>
     </footer>
 </body>
-    
-
 </html>
