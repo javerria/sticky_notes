@@ -7,6 +7,8 @@ Welcome to the Sticky Notes Project! This project allows users to create, edit, 
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Authentication](#authentication)
+- [Testing](#testing)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -21,6 +23,7 @@ The Sticky Notes Project is a web application that mimics a physical pinboard wh
 - **Edit Notes**: Users can edit the content of existing notes.
 - **Delete Notes**: Users can remove notes from the pinboard.
 - **View Notes**: Users can view the details of any note.
+- **User Authentication**: Users can log in with different permissions based on their role (reader or poster).
 - **User-Friendly Interface**: The interface is designed to be simple and easy to use.
 
 ## Technologies Used
@@ -29,7 +32,6 @@ The Sticky Notes Project is a web application that mimics a physical pinboard wh
   - HTML
   - CSS
   - Bootstrap 
-  - Font Awesome
 
 - **Backend**:
   - Django (Python)
@@ -37,6 +39,22 @@ The Sticky Notes Project is a web application that mimics a physical pinboard wh
 - **Database**:
   - SQLite (default for Django projects)
 
+## Authentication
+
+The project includes an authentication system using Django's authentication functionality. Users can log in with different permissions based on their roles:
+
+**Reader**: Can view notes only.
+
+**Poster**: Can add, edit, and delete notes.
+
+User roles and permissions are managed using Django's admin interface, which allows for efficient administration of large numbers of users. By assigning users to groups, permissions can be managed collectively, ensuring a scalable approach to user management.
+
+## Testing
+The project includes a tests.py file to test the functionality of the notes app. Run the tests to ensure everything is working correctly:
+  
+    
+    python manage.py test notes_app
+    
 ## Installation
 
 To get a local copy of the project up and running, follow these steps:
